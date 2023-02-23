@@ -37,20 +37,16 @@ class Solution {
     static int uniquePaths(int r, int c, int[][] grid) {
         // code here
         int mod = 1000000007;
-        //check if start or end is 0 or not
-        if(grid[0][0]==0 || grid[r-1][c-1]==0){
-            return 0;
-        }
+       
         // create dp array 
         int [][]dp = new int[r][c];
-       // dp[0][0]= grid[0][0]%mod;
         
         for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
-                if(grid[i][j] == 0) dp[i][j]=0;
-                else if(i==0 && j==0) dp[i][j]=1;
-                else if(i==0 ) dp[i][j]= dp[i][j-1];
-                else if(j==0) dp[i][j]= dp[i-1][j];
+                if(grid[i][j] == 0) dp[i][j]=0; //if given element in grind is 0 fill it in dp with 0
+                else if(i==0 && j==0) dp[i][j]=1; //fill 1st position with 1
+                else if(i==0 ) dp[i][j]= dp[i][j-1]; //fill 1st row  with 1 
+                else if(j==0) dp[i][j]= dp[i-1][j]; //fill 1st column with 1
                 else dp[i][j]=(dp[i-1][j]+dp[i][j-1])%mod;
             }
         }
