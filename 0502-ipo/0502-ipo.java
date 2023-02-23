@@ -2,7 +2,7 @@ class Solution {
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         int n = profits.length;
         int projects[][] = new int [n][2]; //Initialize 2D array 
-        int profit=0;
+      
         for(int i=0;i<n;i++){
             projects[i][0]= profits[i];
             projects[i][1]= capital[i];
