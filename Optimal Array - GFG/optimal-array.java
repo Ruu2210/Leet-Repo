@@ -33,10 +33,10 @@ class Solution {
     {
         //find median
         long ans[]= new long[n];
-        ans[0]=0;
+        ans[0]=0; //for 1st number we need 0 operation 
         for(int i=1;i<n;i++){
-            long new_ans = ans[i-1]+ (a[i] - a[i/2]);
-            ans[i]=new_ans;
+            ans[i] = ans[i-1]+ (a[i] - a[i/2]);
+            
         }
         return ans;
     }
