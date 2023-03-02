@@ -1,2 +1,2 @@
 # LeetHub-Repo
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+Consistency in Action is the key to success!!
