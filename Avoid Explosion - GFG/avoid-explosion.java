@@ -55,13 +55,14 @@ class Solution {
         //third one union function two set initialise same parent, 
         //as union funtion use path function comparison,
         //time complexity of this algo is O(n * m * log n)
-    int parent[];
+    int parent[],rank[];
     
     ArrayList<String> avoidExlosion(int mix[][], int n, int danger[][], int m) {
         // Code Here
         ArrayList<String> ans = new ArrayList<>();
         
         parent = new int [n+1]; 
+        rank  = new int [n+1]; 
         for(int i=0; i<=n; i++) parent[i]=i;
         
         //logic of code
@@ -92,16 +93,36 @@ class Solution {
         return ans;
     }
     
-    void union(int x, int y){
+    //Unites the set that includes x and y 
+    void union(int x, int y){ 
+        //Optimized rank by heights
         
-        int x_rep = find(x), y_rep = find(y);
+        
+        //find representive of two sets
+        int x_rep = find(x), y_rep = find(y); 
+        
+        //elements are in same set so no need to unite anything
         if(x_rep == y_rep) return;
-        parent[x_rep] = y_rep;
+        
+        if(rank[x_rep] < rank[y_rep]){
+            //Move x under y so that depth of tree remain less 
+        parent[x_rep] = y_rep; 
+        }
+        else if(rank[x_rep] > rank[y_rep]){
+            parent[y_rep] = x_rep;
+        }
+        else{
+            //if ranks are same so move x under y or y under x
+            parent[y_rep] = x_rep;
+            rank[x_rep]++;
+        }
     }
     
     //it return representive of set
-    int find(int x){  //Time Complexity of find=: O[log(n)]
-        if(parent[x]==x) return x;
-        return find(parent[x]);
+    int find(int x){ 
+       //find with path compression 
+        if(x==parent[x]) return x;
+        
+        return parent[x] = find(parent[x]);
     }
 }
