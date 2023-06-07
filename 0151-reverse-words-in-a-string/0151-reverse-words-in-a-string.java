@@ -3,9 +3,10 @@ class Solution {
         
         //convert string s to string array
         String[] words = s.split(" +"); //space+  means any number of spaces 
-        //now reverse the array
+        //use string builder as it is mutable 
         StringBuilder sb = new StringBuilder();
         
+        //reverse loop to reverse the array 
         for(int i=words.length-1;i>=0;i--){
            sb.append(words[i]);
             sb.append(" ");
