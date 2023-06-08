@@ -1,29 +1,22 @@
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        //define array 
-        int n= nums.length;
-        int [] prefixProductFromStart = new int[n];
-        int [] prefixProductFromEnd   = new int[n];
-        int [] result = new int[n]; 
+        //now solve using only one result array no extra space
+        int n = nums.length;
+        int [] result = new int[n];
         
-        //find prefix product
-        prefixProductFromStart[0]=nums[0];
-        for(int i=1; i<n; i++){
-            prefixProductFromStart[i]= prefixProductFromStart[i-1]* nums[i];
+        int productOfAllBeforeCurrent = 1;
+        int ProductOfAllAfterCurrent  = 1;
+        
+        //put productOfAllBeforeCurrent in result
+        for(int i=0; i<n; i++){
+            result[i]=productOfAllBeforeCurrent;
+            productOfAllBeforeCurrent = productOfAllBeforeCurrent*nums[i]; 
         }
         
-        prefixProductFromEnd[n-1]= nums[n-1];
-        for(int i=n-2; i>=0; i--){
-            prefixProductFromEnd[i]=prefixProductFromEnd[i+1]*nums[i];
+        for(int i=n-1; i>=0; i--){
+            result[i] =  result[i] * ProductOfAllAfterCurrent;
+            ProductOfAllAfterCurrent = ProductOfAllAfterCurrent*nums[i];
         }
-        
-        result[0] = prefixProductFromEnd[1];
-        result[n-1] = prefixProductFromStart[n-2];
-        
-        for(int i=1; i<n-1; i++){
-            result[i]= prefixProductFromStart[i-1]* prefixProductFromEnd[i+1];
-        }
-        
         return result;
         
     }
