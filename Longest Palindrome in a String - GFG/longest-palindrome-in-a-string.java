@@ -39,8 +39,11 @@ class Solution{
             String str ="";
             str += s.charAt(i);
             //skip the middle duplicate if have
-            while(i<n-1 && s.charAt(i)==s.charAt(i+1))  str = str+s.charAt(i++);
-                rightp = i+1;
+            while(i<n-1 && s.charAt(i)==s.charAt(i+1)){
+                str = str+s.charAt(i++);
+                rightp++;
+            } 
+            rightp++;
             
             
             
