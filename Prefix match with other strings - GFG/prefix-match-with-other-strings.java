@@ -49,8 +49,8 @@ class Solution
             if(k<=arr[i].length()){
             int j=0;
             while(k>j){
-            if(arr[i].charAt(j)!=str.charAt(j)) break;
-            j++;
+            if(arr[i].charAt(j)==str.charAt(j)) j++;
+            else {break;}
             }
             if(j == k) answer++;
          }
