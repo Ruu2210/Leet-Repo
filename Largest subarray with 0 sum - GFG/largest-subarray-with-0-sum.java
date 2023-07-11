@@ -31,22 +31,27 @@ class GfG
 {
     int maxLen(int arr[], int n)
     {
-        // Your code here
-        HashMap<Integer,Integer> map = new HashMap<>();
-        map.put(0,-1);
-        int sum=0;
-        int max =0;
-        
-        for(int i=0;i<arr.length;i++){
-           sum +=arr[i];
-           
-           if(map.containsKey(sum)){
-               int j = map.get(sum);  
-               max = Math.max(max,(i-j));
-           }
-           else map.put(sum,i);
-        }
-        
-        return max;
+     HashMap<Integer,Integer> map = new HashMap<>();
+     //for storing max subarray length
+     int maxLen = 0;
+     int sum=0;
+     
+     for(int i=0;i<n;i++){
+          sum = sum+arr[i];
+          
+          if(sum == 0){
+              maxLen = i+1;
+          }
+          else{
+              //if current sum is their in hashmap
+              if(map.get(sum) != null){
+                  maxLen = Math.max(maxLen, i-map.get(sum));
+                } 
+                else{
+                    map.put(sum,i);
+                }
+          }
+     }
+      return maxLen;
     }
 }
